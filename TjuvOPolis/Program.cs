@@ -121,7 +121,7 @@ namespace TjuvOPolis
 
 
 
-                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine("-----------------------------------------");
 
 
                 }
