@@ -26,7 +26,7 @@ namespace TjuvOPolis
 
         }
 
-        public virtual void Move(int placeX, int placeY, int moveX, int moveY, string[,] myCity)
+        public virtual void Move(int moveX, int moveY, string[,] myCity)
         {
 
         }
@@ -47,16 +47,20 @@ namespace TjuvOPolis
                 Name = name;
             }
 
-            public override void Move(int placeX, int placeY, int moveX, int moveY, string[,] myCity)
+            public override void Move(int moveX, int moveY, string[,] myCity)
             {
-                PlacementX += MovementDirectionX;
+                if (MovementDirectionX == 0 && MovementDirectionY == 0)
+                {
+                    MovementDirectionY = Random.Shared.Next(-1, 2);
+                    MovementDirectionX = Random.Shared.Next(-1, 2);
+                }
                 PlacementY += MovementDirectionY;
+                PlacementX += MovementDirectionX;
 
-
-                if (PlacementX < 0) PlacementX = myCity.GetLength(0) - 1;
-                if (PlacementX >= myCity.GetLength(0)) PlacementX = 0;
-                if (PlacementY < 0) PlacementY = myCity.GetLength(1) - 1;
-                if (PlacementY >= myCity.GetLength(1)) PlacementY = 0;
+                if (PlacementX < 0) PlacementX = myCity.GetLength(1) - 1;
+                if (PlacementX >= myCity.GetLength(1)) PlacementX = 0;
+                if (PlacementY < 0) PlacementY = myCity.GetLength(0) - 1;
+                if (PlacementY >= myCity.GetLength(0)) PlacementY = 0;
             }
 
             public static void Confiscate(Person police, Person thief)
@@ -95,16 +99,21 @@ namespace TjuvOPolis
 
             }
 
-            public override void Move(int placeX, int placeY, int moveX, int moveY, string[,] myCity)
+            public override void Move(int moveX, int moveY, string[,] myCity)
             {
-                PlacementX += MovementDirectionX;
+                if (MovementDirectionX == 0 && MovementDirectionY == 0)
+                {
+                    MovementDirectionY = Random.Shared.Next(-1, 2);
+                    MovementDirectionX = Random.Shared.Next(-1, 2);
+                }
+
                 PlacementY += MovementDirectionY;
+                PlacementX += MovementDirectionX;
 
-
-                if (PlacementX < 0) PlacementX = myCity.GetLength(0) - 1;
-                if (PlacementX >= myCity.GetLength(0)) PlacementX = 0;
-                if (PlacementY < 0) PlacementY = myCity.GetLength(1) - 1;
-                if (PlacementY >= myCity.GetLength(1)) PlacementY = 0;
+                if (PlacementX < 0) PlacementX = myCity.GetLength(1) - 1;
+                if (PlacementX >= myCity.GetLength(1)) PlacementX = 0;
+                if (PlacementY < 0) PlacementY = myCity.GetLength(0) - 1;
+                if (PlacementY >= myCity.GetLength(0)) PlacementY = 0;
             }
 
             public static void Steel(Person citizen, Person thief)
@@ -144,16 +153,21 @@ namespace TjuvOPolis
                 Name = name;
             }
 
-            public override void Move(int placeX, int placeY, int moveX, int moveY, string[,] myCity)
+            public override void Move(int moveX, int moveY, string[,] myCity)
             {
-                PlacementX += MovementDirectionX;
+                if (MovementDirectionX == 0 && MovementDirectionY == 0)
+                {
+                    MovementDirectionY = Random.Shared.Next(-1, 2);
+                    MovementDirectionX = Random.Shared.Next(-1, 2);
+                }
+
                 PlacementY += MovementDirectionY;
+                PlacementX += MovementDirectionX;
 
-
-                if (PlacementX < 0) PlacementX = myCity.GetLength(0) - 1;
-                if (PlacementX >= myCity.GetLength(0)) PlacementX = 0;
-                if (PlacementY < 0) PlacementY = myCity.GetLength(1) - 1;
-                if (PlacementY >= myCity.GetLength(1)) PlacementY = 0;
+                if (PlacementX < 0) PlacementX = myCity.GetLength(1) - 1;
+                if (PlacementX >= myCity.GetLength(1)) PlacementX = 0;
+                if (PlacementY < 0) PlacementY = myCity.GetLength(0) - 1;
+                if (PlacementY >= myCity.GetLength(0)) PlacementY = 0;
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace TjuvOPolis
 {
-    public class Program
+    public class Program 
     {
         static string[,] myCity = new string[25, 100];
         static void Main(string[] args)
@@ -16,123 +16,102 @@ namespace TjuvOPolis
 
             List<Person> myTown = new List<Person>();
 
-
-            //sätter punkter på varje ruta i min spelplan
-            for (int x = 0; x < myCity.GetLength(0); x++)
-            {
-                for (int y = 0; y < myCity.GetLength(1); y++)
-                {
-                    myCity[x, y] = ".";
-                }
-            }
-
-
             //lägger till poliser, utifrån antalet ovanför
             for (int i = 0; i < numberPoliceOfficers; i++)
             {
-                myTown.Add(new Police());
+                myTown.Add(new Police(GetRandomOfficer()));
             }
 
             //tjuvar
             for (int i = 0; i < numberThiefs; i++)
             {
-                myTown.Add(new Thief());
+                myTown.Add(new Thief(GetRandomThief()));
             }
 
             //medborgare
             for (int i = 0; i < numberCitizens; i++)
             {
-                myTown.Add(new Citizen());
+                myTown.Add(new Citizen(GetRandomCitizen()));
             }
-
-
-
 
 
             while (true)
             {
                 Console.Clear();
+                
+                //sätter ut punkter i min stad
+                for (int i = 0; i < myCity.GetLength(0); i++)
+                {
+                    for (int j = 0; j < myCity.GetLength(1); j++)
+                    {
+                        myCity[i, j] = ".";
+                    }
+                }
 
-                //sätter ut personerna i min stad
+                //för varje person, skriv bokstav och flytta den
                 foreach (Person person in myTown)
                 {
-
                     if (person is Police)
                     {
-
                         myCity[person.PlacementY, person.PlacementX] = "P";
-                        myCity[person.PlacementY, person.PlacementX] = ".";
-
-                        person.Move(person.PlacementX, person.PlacementY, person.MovementDirectionX, person.MovementDirectionY, myCity);
-
-                        myCity[person.PlacementY, person.PlacementX] = "P";
-
+                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
                     }
 
                     else if (person is Thief)
                     {
                         myCity[person.PlacementY, person.PlacementX] = "T";
-                        myCity[person.PlacementY, person.PlacementX] = ".";
-
-                        person.Move(person.PlacementX, person.PlacementY, person.MovementDirectionX, person.MovementDirectionY, myCity);
-
-                        myCity[person.PlacementY, person.PlacementX] = "T";
+                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
                     }
 
                     else if (person is Citizen)
                     {
                         myCity[person.PlacementY, person.PlacementX] = "M";
-                        myCity[person.PlacementY, person.PlacementX] = ".";
-
-                        person.Move(person.PlacementX, person.PlacementY, person.MovementDirectionX, person.MovementDirectionY, myCity);
-
-                        myCity[person.PlacementY, person.PlacementX] = "M";
-
+                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
                     }
-
-
-                    //visar spelplanen
-                    for (int i = 0; i < myCity.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < myCity.GetLength(1); j++)
-                        {
-                            Console.Write(myCity[i, j]);
-
-
-                            //if one person is thief, and the other person is police
-                            if (((Thief)person).PlacementX == ((Police)person).PlacementX && ((Thief)person).PlacementY == ((Police)person).PlacementY)
-                            {
-                                Console.WriteLine("Polis och tjuv möttes. " + ((Police)person).Name + " tog allt som " + ((Thief)person).Name + " hade på sig.");
-                                Police.Confiscate(((Police)person), ((Thief)person));
-                                arrest.ShowArrest(((Thief)person));
-
-                            }
-
-                            if (person is Thief && person is Citizen)
-                            {
-                                Console.WriteLine("Tjuv och medborgare möttes");
-                                Thief.Steel(person thief, person citizen); //paus, sedan fortsätta ändra som ovan
-                            }
-
-                        }
-                        Console.WriteLine();
-                    }
-
-
-
-
-                    Console.WriteLine("-----------------------------------------");
-
 
                 }
 
+
+                //visar spelplanen
+                for (int i = 0; i < myCity.GetLength(0); i++)
+                {
+                    for (int j = 0; j < myCity.GetLength(1); j++)
+                    {
+                        Console.Write(myCity[i, j]);
+                    }
+                    Console.WriteLine();
+                }
+
+                /*
+                // Kolla om någon bokstav möts
+                for (int i = 0; i < myTown.Count; i++)
+                {
+                    for (int j = i + 1; j < myTown.Count; j++)
+                    {
+                        if (myTown[i].PlacementY == myTown[j].PlacementY && myTown[i].PlacementX == myTown[j].PlacementX)
+                        {
+                            Console.WriteLine("bokstäver möttes");
+                        }
+                    }
+                }*/
+
+
+
+
+
+            
+                /*
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Händeleser i staden: ");
                 Console.WriteLine("Antal gripna: " + arrest.NumberArrested);
-                Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);
-                Thread.Sleep(200);
+                Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);*/
+                Thread.Sleep(100);
 
             }
 
         }
+
+        
     }
 }
