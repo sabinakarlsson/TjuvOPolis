@@ -7,9 +7,9 @@ namespace TjuvOPolis
         static string[,] myCity = new string[25, 100];
         static void Main(string[] args)
         {
-            int numberPoliceOfficers = 1;
-            int numberThiefs = 1;
-            int numberCitizens = 1;
+            int numberPoliceOfficers = 10;
+            int numberThiefs = 20;
+            int numberCitizens = 30;
 
             Arrest arrest = new Arrest();
             Robbed robbed = new Robbed();
@@ -82,7 +82,7 @@ namespace TjuvOPolis
                     Console.WriteLine();
                 }
 
-                /*
+                
                 // Kolla om någon bokstav möts
                 for (int i = 0; i < myTown.Count; i++)
                 {
@@ -90,23 +90,36 @@ namespace TjuvOPolis
                     {
                         if (myTown[i].PlacementY == myTown[j].PlacementY && myTown[i].PlacementX == myTown[j].PlacementX)
                         {
-                            Console.WriteLine("bokstäver möttes");
+                            if (myTown[i] is Police && myTown[j] is Thief)
+                            {
+                                Console.WriteLine(((Police)myTown[i]).Name + " och " + ((Thief)myTown[j]).Name + " möttes. Andra blev tillfångatagen.");
+                            }
+
+                            if (myTown[i] is Thief && myTown[j] is Citizen)
+                            {
+                                Console.WriteLine(((Thief)myTown[i]).Name + " och " + ((Citizen)myTown[j]).Name + " möttes. Andra blev rånad");
+                            }
+
+                            if (myTown[i] is Citizen && myTown[j] is Police)
+                            {
+                                Console.WriteLine(((Citizen)myTown[i]).Name + " och " + ((Police)myTown[j]).Name + " möttes. De hälsade på varandra");
+                            }
+
                         }
                     }
-                }*/
+                }
 
 
 
 
+                Thread.Sleep(2000);
 
-            
                 /*
-                Console.WriteLine();
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Händeleser i staden: ");
                 Console.WriteLine("Antal gripna: " + arrest.NumberArrested);
                 Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);*/
-                Thread.Sleep(100);
+                
 
             }
 
