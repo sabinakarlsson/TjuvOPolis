@@ -16,11 +16,11 @@ namespace TjuvOPolis
         }
 
 
-        public void ShowRobbed(Person person)
+        public void ShowRobbed(Person citizen)
         {
             //hur många som blivit rånade
             NumberRobbed++;
-            Console.WriteLine("Antal rånade medborgare: " + NumberRobbed);
+            //Console.WriteLine("Antal rånade medborgare: " + NumberRobbed);
 
         }
     }

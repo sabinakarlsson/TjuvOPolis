@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static TjuvOPolis.Person;
 
 namespace TjuvOPolis
 {
@@ -69,11 +70,13 @@ namespace TjuvOPolis
                 {
                     ((Police)police).SeizedProperty.AddRange(((Thief)thief).StolenProperty);
                     ((Thief)thief).StolenProperty.Clear();
+                    Console.WriteLine(((Police)police).Name + " genomsökte " + ((Thief)thief).Name + ", och beslagstog alla stulna värdesaker.");
+                    
                 }
 
                 else
                 {
-                    Console.WriteLine(((Police)police) + " genomsökte " + ((Thief)thief) + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
+                    Console.WriteLine(((Police)police).Name + " genomsökte " + ((Thief)thief).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
                 }
             }
         }
@@ -126,7 +129,8 @@ namespace TjuvOPolis
                     ((Citizen)citizen).PropertyInPossession.RemoveAt(randomItemNr);
 
                     ((Thief)thief).StolenProperty.Add(randomItemRemoved);
-
+                    Console.WriteLine(((Thief)thief).Name + " rånade " + ((Citizen)citizen).Name + " på en värdesak.");
+                    
                 }
 
                 else

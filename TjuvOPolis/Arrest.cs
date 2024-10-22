@@ -16,11 +16,11 @@ namespace TjuvOPolis
         }
 
 
-        public void ShowArrest(Person person)
+        public void ShowArrest(Person thief)
         {
             //hur många som blivit arresterade
             NumberArrested++;
-            Console.WriteLine("Antal gripna tjuvar: " + NumberArrested);
+            //Console.WriteLine("Antal gripna tjuvar: " + NumberArrested);
         }
     }
 }

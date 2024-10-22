@@ -92,12 +92,22 @@ namespace TjuvOPolis
                         {
                             if (myTown[i] is Police && myTown[j] is Thief)
                             {
-                                Console.WriteLine(((Police)myTown[i]).Name + " och " + ((Thief)myTown[j]).Name + " möttes. Andra blev tillfångatagen.");
+                                Console.WriteLine(((Police)myTown[i]).Name + " och " + ((Thief)myTown[j]).Name + " möttes.");
+                                Police.Confiscate((Police)myTown[i], (Thief)myTown[j]);
+                                if (((Thief)myTown[j]).StolenProperty.Count > 0)
+                                {
+                                    arrest.ShowArrest((Thief)myTown[j]);
+                                }
                             }
 
                             if (myTown[i] is Thief && myTown[j] is Citizen)
                             {
-                                Console.WriteLine(((Thief)myTown[i]).Name + " och " + ((Citizen)myTown[j]).Name + " möttes. Andra blev rånad");
+                                Console.WriteLine(((Thief)myTown[i]).Name + " och " + ((Citizen)myTown[j]).Name + " möttes.");
+                                Thief.Steel((Citizen)myTown[j], (Thief)myTown[i]);
+                                if (((Citizen)myTown[j]).PropertyInPossession.Count > 0)
+                                {
+                                    robbed.ShowRobbed((Thief)myTown[i]);
+                                }
                             }
 
                             if (myTown[i] is Citizen && myTown[j] is Police)
@@ -109,16 +119,12 @@ namespace TjuvOPolis
                     }
                 }
 
-
-
-
-                Thread.Sleep(2000);
-
-                /*
-                Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("Händeleser i staden: ");
                 Console.WriteLine("Antal gripna: " + arrest.NumberArrested);
-                Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);*/
+                Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);
+
+
+                Thread.Sleep(1000);
+                
                 
 
             }
