@@ -17,11 +17,15 @@ namespace TjuvOPolis
 
         public int MovementDirectionX { get; set; }
 
+        public int PrisonPlacementX { get; set; }
+
+        public int PrisonPlacementY { get; set; }
+
 
         public Person()
         {
             PlacementY = Random.Shared.Next(1, 15);
-            PlacementX = Random.Shared.Next(1, 70);
+            PlacementX = Random.Shared.Next(1, 60);
             MovementDirectionY = Random.Shared.Next(-1, 2);
             MovementDirectionX = Random.Shared.Next(-1, 2);
 
@@ -34,16 +38,22 @@ namespace TjuvOPolis
 
         public void MovePrisoners(int moveX, int moveY, string[,] myPrison)
         {
-            /*PlacementY = Random.Shared.Next(1, 10);
-            PlacementX = Random.Shared.Next(1, 20);
-            MovementDirectionY = Random.Shared.Next(-1, 2);
-            MovementDirectionX = Random.Shared.Next(-1, 2);*/
+            PrisonPlacementY = Random.Shared.Next(1, 7);
+            PrisonPlacementX = Random.Shared.Next(1, 15);
 
+            if (MovementDirectionX == 0 && MovementDirectionY == 0)
+            {
+                MovementDirectionY = Random.Shared.Next(-1, 2);
+                MovementDirectionX = Random.Shared.Next(-1, 2);
+            }
 
-            if (PlacementX < 0) PlacementX = myPrison.GetLength(1) - 1;
-            if (PlacementX >= myPrison.GetLength(1)) PlacementX = 0;
-            if (PlacementY < 0) PlacementY = myPrison.GetLength(0) - 1;
-            if (PlacementY >= myPrison.GetLength(0)) PlacementY = 0;
+            PrisonPlacementY += MovementDirectionY;
+            PrisonPlacementX += MovementDirectionX;
+
+            if (PrisonPlacementX < 0) PrisonPlacementX = myPrison.GetLength(1) - 1;
+            if (PrisonPlacementX >= myPrison.GetLength(1)) PrisonPlacementX = 0;
+            if (PrisonPlacementY < 0) PrisonPlacementY = myPrison.GetLength(0) - 1;
+            if (PrisonPlacementY >= myPrison.GetLength(0)) PrisonPlacementY = 0;
         }
 
 
