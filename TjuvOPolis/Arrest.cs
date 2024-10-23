@@ -23,4 +23,6 @@ namespace TjuvOPolis
             //Console.WriteLine("Antal gripna tjuvar: " + NumberArrested);
         }
     }
+
+
 }

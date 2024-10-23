@@ -20,8 +20,8 @@ namespace TjuvOPolis
 
         public Person()
         {
-            PlacementY = Random.Shared.Next(1, 25);
-            PlacementX = Random.Shared.Next(1, 100);
+            PlacementY = Random.Shared.Next(1, 15);
+            PlacementX = Random.Shared.Next(1, 70);
             MovementDirectionY = Random.Shared.Next(-1, 2);
             MovementDirectionX = Random.Shared.Next(-1, 2);
 
@@ -30,6 +30,20 @@ namespace TjuvOPolis
         public virtual void Move(int moveX, int moveY, string[,] myCity)
         {
 
+        }
+
+        public void MovePrisoners(int moveX, int moveY, string[,] myPrison)
+        {
+            /*PlacementY = Random.Shared.Next(1, 10);
+            PlacementX = Random.Shared.Next(1, 20);
+            MovementDirectionY = Random.Shared.Next(-1, 2);
+            MovementDirectionX = Random.Shared.Next(-1, 2);*/
+
+
+            if (PlacementX < 0) PlacementX = myPrison.GetLength(1) - 1;
+            if (PlacementX >= myPrison.GetLength(1)) PlacementX = 0;
+            if (PlacementY < 0) PlacementY = myPrison.GetLength(0) - 1;
+            if (PlacementY >= myPrison.GetLength(0)) PlacementY = 0;
         }
 
 
@@ -155,6 +169,25 @@ namespace TjuvOPolis
 
 
 
+        public class PrisonSize
+        {
+            public int PrisonPlacementX { get; set; }
+
+            public int PrisonPlacementY { get; set; }
+
+            public int MovePrisonY { get; set; }
+
+            public int MovePrisonX { get; set; }
+
+            public PrisonSize()
+            {
+                PrisonPlacementX = Random.Shared.Next(1, 10);
+                PrisonPlacementY = Random.Shared.Next(1, 20);
+                MovePrisonY = Random.Shared.Next(-1, 2);
+                MovePrisonX = Random.Shared.Next(-1, 2);
+
+            }
+        }
 
 
 

@@ -1,10 +1,15 @@
 ﻿using static TjuvOPolis.Person;
+using System.Threading;
 
+//RIKTIGA, inte test
 namespace TjuvOPolis
 {
     public class Program 
     {
-        static string[,] myCity = new string[25, 100];
+        static string[,] myCity = new string[20, 70];
+
+        static string[,] myPrison = new string[10, 20];
+
         static void Main(string[] args)
         {
             int numberPoliceOfficers = 10;
@@ -15,6 +20,8 @@ namespace TjuvOPolis
             Robbed robbed = new Robbed();
 
             List<Person> myTown = new List<Person>();
+            List<Person> myPrisoners = new List<Person>();
+
 
             //lägger till poliser, utifrån antalet ovanför
             for (int i = 0; i < numberPoliceOfficers; i++)
@@ -81,7 +88,9 @@ namespace TjuvOPolis
                     }
                     Console.WriteLine();
                 }
+                Console.WriteLine();
                 Console.WriteLine("-------------------------");
+                
 
 
                 // Kolla om någon bokstav möts
@@ -100,14 +109,12 @@ namespace TjuvOPolis
                                     Police.Confiscate((Police)myTown[i], (Thief)myTown[j]);
                                     arrest.ShowArrest((Thief)myTown[j]);
                                     myTown.RemoveAt(j);
-                                    //myPrisoners.Add((Thief)myTown[j]);
-                                    Console.WriteLine("-------------------------");
+                                    myPrisoners.Add(myTown[j]);
                                 }
 
                                 else
                                 {
                                     Console.WriteLine(" Polisen genomsökte " + ((Thief)myTown[j]).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
-                                    Console.WriteLine("-------------------------");
                                 }
                             }
 
@@ -121,14 +128,12 @@ namespace TjuvOPolis
                                     Police.Confiscate((Police)myTown[j], (Thief)myTown[i]);
                                     arrest.ShowArrest((Thief)myTown[i]);
                                     myTown.RemoveAt(i);
-                                    //myPrisoners.Add((Thief)myTown[i]);
-                                    Console.WriteLine("-------------------------");
+                                    myPrisoners.Add((Thief)myTown[i]);
                                 }
 
                                 else
                                 {
                                     Console.WriteLine(" Polisen genomsökte " + ((Thief)myTown[i]).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
-                                    Console.WriteLine("-------------------------");
                                 }
                             }
 
@@ -141,7 +146,6 @@ namespace TjuvOPolis
                                 {
                                     Thief.Steal((Citizen)myTown[j], (Thief)myTown[i]);
                                     robbed.ShowRobbed((Thief)myTown[i]);
-                                    Console.WriteLine("-------------------------");
                                 }
 
                                 else
@@ -182,15 +186,52 @@ namespace TjuvOPolis
                         }
                     }
                 }
+                
+                skriver ut fängelset
+                Console.WriteLine("-------------------------");
+                Console.WriteLine();
+                Console.WriteLine("Fängelse: ");
 
+                //sätter ut punkter i mitt fängelse
+                for (int i = 0; i < myPrison.GetLength(0); i++)
+                {
+                    for (int j = 0; j < myPrison.GetLength(1); j++)
+                    {
+                        myPrison[i, j] = ".";
+                    }
+                }
+                
+                //lägger till personer i fängelset
+                foreach (Person person in myPrisoners)
+                {
+                    int PrisonPlacementY = Random.Shared.Next(1, 10);
+                    int PrisonPlacementX = Random.Shared.Next(1, 20);
+                    int MoveInsidePrisonY = Random.Shared.Next(-1, 2);
+                    int MoveInsidePrisonX = Random.Shared.Next(-1, 2);
+
+                    myPrison[PrisonPlacementY, PrisonPlacementX] = "T";
+                    person.MovePrisoners(MoveInsidePrisonY, MoveInsidePrisonX, myPrison);
+
+                }
+
+                /*
+                //skriver ut mitt fängelse
+                for (int i = 0; i < myPrison.GetLength(0); i++)
+                {
+                    for (int j = 0; j < myPrison.GetLength(1); j++)
+                    {
+                        Console.Write(myPrison[i, j]);
+                    }
+                    Console.WriteLine();
+                }*/
+                
+                
                 Console.WriteLine();
                 Console.WriteLine("Antal gripna: " + arrest.NumberArrested);
                 Console.WriteLine("Antal rånade: " + robbed.NumberRobbed);
 
-
+                //Console.ReadLine();
                 Thread.Sleep(1000);
-                
-                
 
             }
 
