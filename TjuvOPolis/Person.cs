@@ -66,27 +66,13 @@ namespace TjuvOPolis
 
             public static void Confiscate(Person police, Person thief)
             {
-                if (((Thief)thief).StolenProperty.Count > 0)
-                {
-                    ((Police)police).SeizedProperty.AddRange(((Thief)thief).StolenProperty);
-                    ((Thief)thief).StolenProperty.Clear();
-                    Console.WriteLine(((Police)police).Name + " genomsökte " + ((Thief)thief).Name + ", och beslagstog alla stulna värdesaker.");
-                    
-                }
 
-                else
-                {
-                    Console.WriteLine(((Police)police).Name + " genomsökte " + ((Thief)thief).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
-                }
+                ((Police)police).SeizedProperty.AddRange(((Thief)thief).StolenProperty);
+                ((Thief)thief).StolenProperty.Clear();
+                Console.WriteLine(((Police)police).Name + " genomsökte " + ((Thief)thief).Name + ", och beslagstog alla stulna värdesaker. " + ((Thief)thief).Name + " fick åka i fängelse för sitt brott...");
+
             }
         }
-
-
-
-
-
-
-
 
         public class Thief : Person
         {
@@ -119,24 +105,16 @@ namespace TjuvOPolis
                 if (PlacementY >= myCity.GetLength(0)) PlacementY = 0;
             }
 
-            public static void Steel(Person citizen, Person thief)
+            public static void Steal(Person citizen, Person thief)
             {
-                if (((Citizen)citizen).PropertyInPossession.Count > 0)
-                {
-                    int randomItemNr = Random.Shared.Next(((Citizen)citizen).PropertyInPossession.Count);
 
-                    var randomItemRemoved = ((Citizen)citizen).PropertyInPossession[randomItemNr];
-                    ((Citizen)citizen).PropertyInPossession.RemoveAt(randomItemNr);
+                int randomItemNr = Random.Shared.Next(((Citizen)citizen).PropertyInPossession.Count);
 
-                    ((Thief)thief).StolenProperty.Add(randomItemRemoved);
-                    Console.WriteLine(((Thief)thief).Name + " rånade " + ((Citizen)citizen).Name + " på en värdesak.");
-                    
-                }
+                var randomItemRemoved = ((Citizen)citizen).PropertyInPossession[randomItemNr];
+                ((Citizen)citizen).PropertyInPossession.RemoveAt(randomItemNr);
 
-                else
-                {
-                    Console.WriteLine(((Thief)thief) + " försökte råna " + ((Citizen)citizen) + ", men hen har redan blivit bestulen på alla sina värdesaker..");
-                }
+                ((Thief)thief).StolenProperty.Add(randomItemRemoved);
+                Console.WriteLine("Denna tjuv rånade " + ((Citizen)citizen).Name + " på " + randomItemRemoved.Things);
 
             }
         }
@@ -153,7 +131,7 @@ namespace TjuvOPolis
 
             public Citizen(string name) : base()
             {
-                PropertyInPossession = new List<Thing> { new Thing("nycklar"), new Thing("plånbok"), new Thing("mobiltelefon"), new Thing("klocka") };
+                PropertyInPossession = new List<Thing> { new Thing("sina nycklar"), new Thing("sin plånbok"), new Thing("sin mobiltelefon"), new Thing("sin klocka") };
                 Name = name;
             }
 
