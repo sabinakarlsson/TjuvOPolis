@@ -61,6 +61,8 @@ namespace TjuvOPolis
                 Console.WriteLine();
                 Console.WriteLine("-------------------------");
 
+
+                //Hanterar möten mellan bokstäver och allt som händer därefter + räknar upp antalet rånade & gripna
                 City.MeetingLetters(myCity, myTown, myPrison, myPrisoners, arrest, robbed);
 
                 
