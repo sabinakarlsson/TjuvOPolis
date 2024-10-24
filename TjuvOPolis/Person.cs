@@ -38,8 +38,8 @@ namespace TjuvOPolis
 
         public void MovePrisoners(int moveX, int moveY, string[,] myPrison)
         {
-            PrisonPlacementY = Random.Shared.Next(1, 7);
-            PrisonPlacementX = Random.Shared.Next(1, 15);
+            PrisonPlacementY = Random.Shared.Next(1, 10);
+            PrisonPlacementX = Random.Shared.Next(1, 20);
 
             if (MovementDirectionX == 0 && MovementDirectionY == 0)
             {

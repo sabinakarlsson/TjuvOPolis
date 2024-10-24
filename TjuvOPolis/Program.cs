@@ -1,14 +1,17 @@
 ﻿using static TjuvOPolis.Person;
-using System.Threading;
+
 
 //RIKTIGA, inte test
 namespace TjuvOPolis
+
 {
+    using System.Threading;
+
     public class Program 
     {
         static string[,] myCity = new string[15, 60];
 
-        static string[,] myPrison = new string[7, 15];
+        static string[,] myPrison = new string[10, 20];
 
         static void Main(string[] args)
         {
