@@ -85,7 +85,7 @@ namespace TjuvOPolis
                                     myPrisoners.Add(myTown[j]);
                                 }
 
-                                else
+                                else if (((Thief)myTown[j]).StolenProperty.Count == 0)
                                 {
                                     Console.WriteLine(" Polisen genomsökte " + ((Thief)myTown[j]).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
                                 }
@@ -104,7 +104,7 @@ namespace TjuvOPolis
                                     myPrisoners.Add((Thief)myTown[i]);
                                 }
 
-                                else
+                                else if (((Thief)myTown[i]).StolenProperty.Count == 0)
                                 {
                                     Console.WriteLine(" Polisen genomsökte " + ((Thief)myTown[i]).Name + ", men hen hade inga stulna värdesaker på sig (denna gång..)");
                                 }
@@ -121,7 +121,7 @@ namespace TjuvOPolis
                                     robbed.ShowRobbed((Thief)myTown[i]);
                                 }
 
-                                else
+                                else if (((Citizen)myTown[j]).PropertyInPossession.Count == 0)
                                 {
                                     Console.WriteLine(((Thief)myTown[i]).Name + " försökte råna " + ((Citizen)myTown[j]).Name + ", men hen har redan blivit bestulen på alla sina värdesaker..");
                                 }
@@ -138,7 +138,7 @@ namespace TjuvOPolis
                                     robbed.ShowRobbed((Thief)myTown[j]);
                                 }
 
-                                else
+                                else if (((Citizen)myTown[i]).PropertyInPossession.Count == 0)
                                 {
                                     Console.WriteLine(((Thief)myTown[j]).Name + " försökte råna " + ((Citizen)myTown[i]).Name + ", men hen har redan blivit bestulen på alla sina värdesaker..");
                                 }
