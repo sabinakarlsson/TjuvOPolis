@@ -49,83 +49,18 @@ namespace TjuvOPolis
             while (true)
             {
                 Console.Clear();
-                
-                //sätter ut punkter i min stad
-                for (int i = 0; i < myCity.GetLength(0); i++)
-                {
-                    for (int j = 0; j < myCity.GetLength(1); j++)
-                    {
-                        myCity[i, j] = ".";
-                    }
-                }
 
-                //för varje person, skriv bokstav och flytta den
-                foreach (Person person in myTown)
-                {
-                    if (person is Police)
-                    {
-                        myCity[person.PlacementY, person.PlacementX] = "P";
-                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
-                    }
-
-                    else if (person is Thief)
-                    {
-                        myCity[person.PlacementY, person.PlacementX] = "T";
-                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
-                    }
-
-                    else if (person is Citizen)
-                    {
-                        myCity[person.PlacementY, person.PlacementX] = "M";
-                        person.Move(person.MovementDirectionX, person.MovementDirectionY, myCity);
-                    }
-
-                }
-
-
-                //visar spelplanen
-                for (int i = 0; i < myCity.GetLength(0); i++)
-                {
-                    for (int j = 0; j < myCity.GetLength(1); j++)
-                    {
-                        Console.Write(myCity[i, j]);
-                    }
-                    Console.WriteLine();
-                }
+                //Sätter ut punkter i min stad, skriver ut bokstäver samt visar min stad:
+                City.ShowCity(myCity, myTown);
 
 
                 Console.WriteLine("-------------------------");
                 Console.WriteLine();
 
-                //sätter ut punkter i mitt fängelse
-                for (int i = 0; i < myPrison.GetLength(0); i++)
-                {
-                    for (int j = 0; j < myPrison.GetLength(1); j++)
-                    {
-                        myPrison[i, j] = ".";
-                    }
-                }
 
-                //lägger till personer i fängelset
-                foreach (Person person in myPrisoners)
-                {
-                    myPrison[person.PrisonPlacementY, person.PrisonPlacementX] = "T";
-                    person.MovePrisoners(person.MovementDirectionX, person.MovementDirectionY, myPrison);
+                //Sätter ut punkter i mitt fängelse, skriver ut bokstav samt visar mitt fängelse:
+                Prison.ShowPrison(myPrison, myPrisoners);
 
-                }
-
-
-                Console.WriteLine("Fängelse: ");
-                //skriver ut mitt fängelse
-
-                for (int s = 0; s < myPrison.GetLength(0); s++)
-                {
-                    for (int t = 0; t < myPrison.GetLength(1); t++)
-                    {
-                        Console.Write(myPrison[s, t]);
-                    }
-                    Console.WriteLine();
-                }
                 Console.WriteLine();
                 Console.WriteLine("-------------------------");
                 
